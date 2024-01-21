@@ -1,5 +1,5 @@
 
-![Banner](https://github.com/Gabriel1Pinheiro/Sistema_de_xadrez.Java/blob/master/Spring.png)
+![Banner](https://github.com/Gabriel1Pinheiro/workshop-SpringBoot-/blob/main/Spring.png)
 
 Este projeto de web services com Spring Boot e JPA, Hibernate foi desenvolvido com o objetivo de implementar um modelo de domínio e estruturar as camadas lógicas: resource, service, repository. Além disso, configura um banco de dados de teste (H2), popula o banco de dados, realiza operações CRUD (Create, Retrieve, Update, Delete) e inclui um tratamento de exceções.
 ## Tecnologias Utilizadas
