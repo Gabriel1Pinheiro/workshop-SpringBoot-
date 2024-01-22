@@ -12,19 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/categories")
+@RestController // * Controlador REST para manipulação de endpoints relacionados às categorias.
+@RequestMapping(value = "/categories") // É mapeada para "/categories" pelo @RequestMapping.
 public class CategoryResource {
 
-    @Autowired
+    @Autowired // Injeção de dependência do repositório de produtos.
     private CategoryService service;
 
+    //  Endpoint para obter todas as categorias cadastradas.
     @GetMapping
     public ResponseEntity<List<Category>> findAll() {
         List<Category> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
+    // Endpoint para obter uma categoria com base no seu ID.
     @GetMapping(value = "/{id}")
     public ResponseEntity<Category> findById(@PathVariable Long id) {
         Category obj = service.findById(id);

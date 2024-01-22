@@ -5,7 +5,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.time.Instant;
 
+
+// A classe StandardError representa informações padrão de erro em respostas de exceções em serviços web.
+// Implementa a interface Serializable para permitir a serialização dos objetos desta classe.
+
 public class StandardError implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    // Anotação que especifica o formato de serialização para o campo timestamp.
+    // O formato especificado é "yyyy-MM-dd'T'HH:mm:ss'Z'" e o timezone é "GMT".
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant timestamp;
     private Integer status;

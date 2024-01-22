@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/products")
+@RestController // É anotada com @RestController para indicar que é um controlador REST.
+@RequestMapping(value = "/products") // É mapeada para "/products" pelo @RequestMapping.
 public class ProductResource {
 
-    @Autowired
+    @Autowired // Injeção de dependência do repositório de produtos.
     private ProductService service;
 
-    @GetMapping
+    @GetMapping // Manipula requisições HTTP GET para obter todos os produtos cadastrados.
     public ResponseEntity<List<Product>> findAll() {
         List<Product> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}") // id ID do produto a ser obtido.
     public ResponseEntity<Product> findById(@PathVariable Long id) {
         Product obj = service.findById(id);
         return ResponseEntity.ok().body(obj);

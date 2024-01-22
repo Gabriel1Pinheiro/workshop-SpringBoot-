@@ -11,26 +11,30 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "tb_order")
+@Entity // A classe Order é uma entidade que representa um pedido no sistema.
+@Table(name = "tb_order") // Especifica o nome da tabela no banco de dados.
 public class Order implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id //Indica que este campo é a chave primária da entidade.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Configura a geração automática do valor do ID.
     private Long id;
 
+    // Momento em que o pedido foi realizado, formatado como Instant.
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
     private Integer orderStatus;
-    @ManyToOne
+
+    @ManyToOne // Cliente associado ao pedido, representado como uma associação muitos para um com a entidade User.
     @JoinColumn(name = "client_id")
     private User client;
 
+    // Detalhes do pagamento associados ao pedido, representado como uma associação um para um com a entidade Payment.
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
-    @OneToMany(mappedBy = "id.order")
+    // Itens do pedido, representados como uma associação um para muitos com a entidade OrderItem.
+    @OneToMany(mappedBy = "id.order") //
     private Set<OrderItem> items = new HashSet<>();
 
     public Order() {

@@ -13,10 +13,16 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.List;
 
+//Anotação que indica que a classe é uma entidade JPA, ou seja, será mapeada para uma tabela no banco de dados.
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_user") // Especifica o nome da tabela no banco de dados para armazenar os dados desta entidade.
 public class User implements Serializable {
-    @Id
+
+    // Versão da classe para fins de serialização
+    private static final long serialVersionUID = 1L;
+
+    @Id  // Identificador único do usuário
+    //Especifica a estratégia de geração de valor automático para a chave primária.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
@@ -24,6 +30,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    // Lista de pedidos associados a este usuário
     @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();

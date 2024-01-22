@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/orders")
+@RestController // É anotada com @RestController para indicar que é um controlador REST.
+@RequestMapping(value = "/orders") // É mapeada para "/orders" pelo @RequestMapping.
 public class OrderResource {
 
-    @Autowired
+    @Autowired // Injeção de dependência do repositório de produtos.
     private OrderService service;
 
-    @GetMapping
+    @GetMapping // Manipula requisições HTTP GET para obter todos os produtos cadastrados.
     public ResponseEntity<List<Order>> findAll() {
         List<Order> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{id}") // id ID do produto a ser obtido.
     public ResponseEntity<Order> findById(@PathVariable Long id) {
         Order obj = service.findById(id);
         return ResponseEntity.ok().body(obj);

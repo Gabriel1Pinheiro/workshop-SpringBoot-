@@ -14,24 +14,28 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service //Notação que indica que a classe é um componente de serviço gerenciado pelo Spring.
 public class UserService {
     @Autowired
     private UserRepository repository;
 
+    // Retorna uma lista de todos os usuários no banco de dados.
     public List<User> findAll(){
         return repository.findAll();
     }
-    
+
+    // Busca um usuário pelo ID.
     public User findById(Long id){
         Optional<User> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+    // Insere um novo usuário no banco de dados.
     public User insert(User obj){
         return repository.save(obj);
     }
 
+    // Exclui um usuário pelo ID.
     public void delete(Long id) {
         try {
             repository.deleteById(id);
@@ -43,6 +47,7 @@ public class UserService {
         }
     }
 
+    //  Atualiza as informações de um usuário existente.
     public User update(Long id, User obj){
         try {
             User entity = repository.getReferenceById(id);
@@ -53,6 +58,7 @@ public class UserService {
         }
     }
 
+    // Atualiza os dados de um usuário com base em novas informações.
     private void updateData(User entity, User obj){
         entity.setName(obj.getName());
         entity.setEmail(obj.getEmail());

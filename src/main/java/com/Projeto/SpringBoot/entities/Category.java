@@ -13,17 +13,22 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "tb_category")
+@Entity // A classe Category representa uma categoria associada a produtos em um sistema de comércio eletrônico.
+@Table(name = "tb_category") // É mapeada para a tabela "tb_category" no banco de dados.
 public class Category implements Serializable {
 
-    @Id
+    @Id // Identificador único do usuário
+    //Especifica a estratégia de geração de valor automático para a chave primária.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
+    //Indica que a propriedade products não deve ser
+    // serializada para JSON, evitando referências cíclicas ao serializar objetos Category.
     @JsonIgnore
-    @ManyToMany(mappedBy = "categories")
+    // Indica uma relação muitos para muitos com a classe Product.
+    // A propriedade mappedBy especifica o nome do atributo na classe Product que mapeia essa relação.
+    @ManyToMany(mappedBy = "categories") //
     private Set<Product> products = new HashSet<>();
 
     public Category() {

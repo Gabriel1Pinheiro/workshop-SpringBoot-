@@ -13,17 +13,20 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-@Entity
-@Table(name = "tb_payment")
+@Entity // Entidade que representa informações de pagamento associadas a um pedido.
+@Table(name = "tb_payment") // Especifica o nome da tabela no banco de dados.
 public class Payment implements Serializable {
-    @Id
+    @Id // Identificador único do usuário
+        //Especifica a estratégia de geração de valor automático para a chave primária.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Instant momment;
 
+    //Indica que o campo anotado deve ser ignorado
+    // durante a serialização para JSON, evitando referências circulares.
     @JsonIgnore
-    @OneToOne
-    @MapsId
+    @OneToOne // Indica um relacionamento um-para-um entre Payment e Order.
+    @MapsId // Indica que a chave primária (id) de Payment é derivada da chave primária de Order.
     private Order order;
 
     public Payment() {

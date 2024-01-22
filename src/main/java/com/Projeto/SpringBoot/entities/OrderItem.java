@@ -9,11 +9,11 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "tb_order_item")
+@Entity // A classe OrderItem representa um item de pedido em um sistema de comércio eletrônico.
+@Table(name = "tb_order_item") // É mapeada para a tabela "tb_order_item" no banco de dados.
 public class OrderItem implements Serializable {
     @EmbeddedId
-    private OrderItemPk id = new OrderItemPk();
+    private OrderItemPk id = new OrderItemPk(); // // Chave primária composta usando uma classe incorporada.
     private Integer quantity;
     private double price;
 
@@ -28,7 +28,9 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
-    @JsonIgnore
+    @JsonIgnore// Indica que o método getOrders() não deve ser serializado
+    // para JSON, evitando referências cíclicas.
+    // Obtém o conjunto de pedidos associados a este produto.
     public Order getOrder(){
         return id.getOrder();
     }

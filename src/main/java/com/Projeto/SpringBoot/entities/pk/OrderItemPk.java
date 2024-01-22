@@ -9,10 +9,11 @@ import jakarta.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Embeddable
+@Embeddable //  Indica que a classe é incorporável em outra entidade e pode ser usada
+// como chave primária incorporada.
 public class OrderItemPk implements Serializable {
-    @ManyToOne
-    @JoinColumn(name = "order_id")
+    @ManyToOne //  Indica um relacionamento muitos-para-um com as classes Order e Product.
+    @JoinColumn(name = "order_id") //  Especifica a coluna na tabela de banco de dados que é usada para a associação.
     private Order order;
     @ManyToOne
     @JoinColumn(name = "product_id")

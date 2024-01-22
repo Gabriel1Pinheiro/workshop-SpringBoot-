@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.Instant;
 
+
+// A classe ResourceExceptionHandler é um componente do Spring que trata globalmente exceções no aplicativo.
+
+// A anotação @ControllerAdvice contém métodos específicos para lidar com diferentes tipos de exceções.
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
+    // Trata exceções do tipo ResourceNotFoundException
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> resouceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
         String error = "Resource not found";
@@ -21,6 +26,7 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
+    // Trata exceções do tipo DatabaseException.
     @ExceptionHandler(DatabaseException.class)
     public ResponseEntity<StandardError> database(DatabaseException e, HttpServletRequest request) {
         String error = "Database error";
